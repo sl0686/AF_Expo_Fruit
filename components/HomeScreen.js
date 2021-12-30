@@ -13,8 +13,8 @@ import {
 import {Card, ListItem, Button, FAB, Badge} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-//import appsFlyer from 'react-native-appsflyer'; 
-/*
+import appsFlyer from 'react-native-appsflyer'; 
+
 import {
   AFInit,
   AFLogEvent,
@@ -24,7 +24,7 @@ import {
   AF_checkout,
   AF_viewCart,
 } from './AppsFlyer.js';
-*/
+
 import Product from './Product.js';
 import WelcomeModal from './WelcomeModal.js';
 
@@ -138,7 +138,7 @@ const HomeScreen = ({navigation}) => {
 
   // AppsFlyer initialization!
   useEffect(() => {
-    /*
+  
     // eslint-disable-next-line react-hooks/exhaustive-deps
     AFGCDListener = appsFlyer.onInstallConversionData(res => {
       const isFirstLaunch = res?.data?.is_first_launch;
@@ -167,10 +167,10 @@ const HomeScreen = ({navigation}) => {
     });
 
     AFInit();
-*/
+
     return () => {
-      AFGCDListener();
-      AFUDLListener();
+      //AFGCDListener();
+      //AFUDLListener();
     };
   }, []);
 
