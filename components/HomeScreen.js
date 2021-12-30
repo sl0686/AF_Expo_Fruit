@@ -75,7 +75,7 @@ const HomeScreen = ({navigation}) => {
   const [isFirstLaunch, setIsFirstLaunch] = useState(false);
 
   const goToProductScreen = (product, addToCart) => {
-    //AFLogEvent(AF_clickOnItem, product);
+    AFLogEvent(AF_clickOnItem, product);
     navigation.navigate('Item', {
       product: product,
       addToCart: addToCart,
@@ -83,7 +83,7 @@ const HomeScreen = ({navigation}) => {
   };
 
   const addProductToCart = product => {
-    //AFLogEvent(AF_addedToCart, product);
+    AFLogEvent(AF_addedToCart, product);
     setItemsInCart(prev => [...prev, product]);
   };
 
@@ -91,7 +91,7 @@ const HomeScreen = ({navigation}) => {
     let tempList = [...itemsInCart];
     let index = tempList.indexOf(product);
     if (index !== -1) {
-      //AFLogEvent(AF_removedFromCart, product);
+      AFLogEvent(AF_removedFromCart, product);
       tempList.splice(index, 1);
       setItemsInCart(tempList);
     }
@@ -101,7 +101,7 @@ const HomeScreen = ({navigation}) => {
     let eventValues = {
       cart_size: productList.length,
     };
-    //AFLogEvent(AF_viewCart, eventValues);
+    AFLogEvent(AF_viewCart, eventValues);
     navigation.navigate('Cart', {
       productList: productList,
       removeProductFromCart: removeProductFromCart,
@@ -132,7 +132,7 @@ const HomeScreen = ({navigation}) => {
       af_revenue: totalRevenue,
     };
     console.log(checkoutValues);
-    //AFLogEvent(AF_checkout, checkoutValues);
+    AFLogEvent(AF_checkout, checkoutValues);
     setItemsInCart([]);
   };
 
