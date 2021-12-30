@@ -12,8 +12,11 @@ import {
 } from 'react-native';
 import {Card, ListItem, Button, FAB, Badge} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
-/*NOTE ADD THE AF STUFF BACK IN LATER!
-//import appsFlyer from 'react-native-appsflyer'; 
+
+
+
+//NOTE ADD THE AF STUFF BACK IN LATER!
+import appsFlyer from 'react-native-appsflyer'; 
 
 import {
   AFInit,
@@ -24,7 +27,7 @@ import {
   AF_checkout,
   AF_viewCart,
 } from './AppsFlyer.js';
-*/
+
 import Product from './Product.js';
 import WelcomeModal from './WelcomeModal.js';
 
@@ -75,7 +78,7 @@ const HomeScreen = ({navigation}) => {
   const [isFirstLaunch, setIsFirstLaunch] = useState(false);
 
   const goToProductScreen = (product, addToCart) => {
-    //AFLogEvent(AF_clickOnItem, product);
+    AFLogEvent(AF_clickOnItem, product);
     navigation.navigate('Item', {
       product: product,
       addToCart: addToCart,
@@ -83,7 +86,7 @@ const HomeScreen = ({navigation}) => {
   };
 
   const addProductToCart = product => {
-    //AFLogEvent(AF_addedToCart, product);
+    AFLogEvent(AF_addedToCart, product);
     setItemsInCart(prev => [...prev, product]);
   };
 
@@ -91,7 +94,7 @@ const HomeScreen = ({navigation}) => {
     let tempList = [...itemsInCart];
     let index = tempList.indexOf(product);
     if (index !== -1) {
-      //AFLogEvent(AF_removedFromCart, product);
+      AFLogEvent(AF_removedFromCart, product);
       tempList.splice(index, 1);
       setItemsInCart(tempList);
     }
@@ -101,7 +104,7 @@ const HomeScreen = ({navigation}) => {
     let eventValues = {
       cart_size: productList.length,
     };
-    //AFLogEvent(AF_viewCart, eventValues);
+    LogEvent(AF_viewCart, eventValues);
     navigation.navigate('Cart', {
       productList: productList,
       removeProductFromCart: removeProductFromCart,
@@ -132,13 +135,14 @@ const HomeScreen = ({navigation}) => {
       af_revenue: totalRevenue,
     };
     console.log(checkoutValues);
-    //AFLogEvent(AF_checkout, checkoutValues);
+    AFLogEvent(AF_checkout, checkoutValues);
     setItemsInCart([]);
   };
 
   // AppsFlyer initialization!
   useEffect(() => {
-    /*
+    console.log('useEffect has fired');
+    
     // eslint-disable-next-line react-hooks/exhaustive-deps
     AFGCDListener = appsFlyer.onInstallConversionData(res => {
       const isFirstLaunch = res?.data?.is_first_launch;
@@ -167,10 +171,11 @@ const HomeScreen = ({navigation}) => {
     });
 
     AFInit();
-*/
+    
+    
     return () => {
-      AFGCDListener();
-      AFUDLListener();
+      //AFGCDListener();
+      //AFUDLListener();
     };
   }, []);
 

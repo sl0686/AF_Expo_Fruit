@@ -10,11 +10,11 @@ export const AF_clickOnItem = 'af_click_on_item';
 
 const initOptions = {
     isDebug: true,
-    devKey: 'Us4GmXxXx46Qed',
+    devKey: 's2czeDGQf2DxYTL7ieQavG',
     onInstallConversionDataListener: true,
     timeToWaitForATTUserAuthorization: 10,
     onDeepLinkListener: true,
-    appId: '741993747'
+    appId: '099999988'
 };
 
 // AppsFlyer initialization flow. ends with initSdk.
