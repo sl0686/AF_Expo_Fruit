@@ -1,21 +1,61 @@
-import { StatusBar } from 'expo-status-bar';
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ * @flow strict-local
+ */
+
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import type {Node}
+from 'react';
+import {
+   SafeAreaView,
+   ScrollView,
+   StatusBar,
+   StyleSheet,
+   Text,
+   View,
+   LogBox,
+   I18nManager
+} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import 'react-native-gesture-handler';
+import {createStackNavigator} from '@react-navigation/stack';
+import HomeScreen from './components/HomeScreen.js';
+import Cart from './components/Cart.js';
+import Item from './components/Item.js';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+const Stack = createStackNavigator();
+try {
+  I18nManager.allowRTL(false);
+} catch (e) {
+  console.log(e);
 }
+  LogBox.ignoreLogs(['Non-serializable values were found in the navigation state']);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const App = () => {
+
+   return (<NavigationContainer>
+      <Stack.Navigator screenOptions={{
+            headerStyle: {
+               backgroundColor: '#52c41a'
+            },
+            headerTintColor: '#FFFFFF',
+            headerTitleStyle: {
+               fontWeight: 'bold'
+            },
+            headerTitleAlign: 'center'
+         }}>
+         <Stack.Screen name="Home" component={HomeScreen} options={{
+               title: 'The AppsFlyer Shop!'
+            }}/>
+         <Stack.Screen name="Cart" component={Cart}/>
+         <Stack.Screen name="Item" component={Item} options={({route}) => ({title: route.params.product.name})}/>
+      </Stack.Navigator>
+   </NavigationContainer>);
+};
+
+const styles = StyleSheet.create({});
+
+export default App;
