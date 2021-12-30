@@ -12,9 +12,9 @@ import {
 } from 'react-native';
 import {Card, ListItem, Button, FAB, Badge} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
-/*NOTE ADD THE AF STUFF BACK IN LATER!
-//import appsFlyer from 'react-native-appsflyer'; 
 
+//import appsFlyer from 'react-native-appsflyer'; 
+/*
 import {
   AFInit,
   AFLogEvent,
